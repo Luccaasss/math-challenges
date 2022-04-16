@@ -7,6 +7,7 @@ function getRandomNumber(max: number) {
 }
 
 const audio = new Audio(song)
+audio.volume = 0.3 //Set audio volume to 0.3 of 1.0
 
 function CheckRightAnswerDisplay({ isRightAnswer, userRes }) {
   if (isRightAnswer) return <div className='display-container display_question--right'></div>
@@ -68,7 +69,7 @@ export default function DisplayQuestion(props) {
 
               if (isRight) {
                 setIsRightAnswer(true)
-                handleEnterTimer(150) //Miliseconds
+                handleEnterTimer(130) //Miliseconds
               }
               else {
                 setIsRightAnswer(false)
