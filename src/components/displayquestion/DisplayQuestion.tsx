@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import './displayquestion.css';
+import './displayquestion.css'
+import song from './../../assets/sound/sound_wrong.mp3';
 
 function getRandomNumber(max: number) {
   return Math.floor(Math.random() * max)
 }
 
-function CheckRightAnswerDisplay({ isRightAnswer }) {
+const audio = new Audio(song)
+
+function CheckRightAnswerDisplay({ isRightAnswer, userRes }) {
   if (isRightAnswer) return <div className='display-container display_question--right'></div>
-  return <div className='display-container display_question--wrong '>Wrong</div>
+  return <div className='display-container display_question--wrong '>{userRes}</div>
 }
 
 export default function DisplayQuestion(props) {
@@ -45,12 +48,11 @@ export default function DisplayQuestion(props) {
 
   return (
     <>
-      {answerTimer ? <div className='display-container'>
-        <div className='display_question'>
+      {answerTimer ?
+        <div className='display-container'>
           {activeNumbers[number1]}x
           {activeNumbers[number2]}
-        </div>
-      </div> : <CheckRightAnswerDisplay isRightAnswer={isRightAnswer} />}
+        </div> : <CheckRightAnswerDisplay isRightAnswer={isRightAnswer} userRes={userRes} />}
 
       <div>
         <input
@@ -62,14 +64,15 @@ export default function DisplayQuestion(props) {
               const targetValue = parseInt(event.currentTarget.value)
               const isRight = activeNumbers[number1] * activeNumbers[number2] === targetValue
 
-              setUserRes(targetValue)
+              setUserRes(activeNumbers[number1] * activeNumbers[number2])
 
               if (isRight) {
                 setIsRightAnswer(true)
-                handleEnterTimer(200) //Miliseconds
+                handleEnterTimer(150) //Miliseconds
               }
               else {
                 setIsRightAnswer(false)
+                audio.play()
                 handleEnterTimer(1000) //Miliseconds
               }
 

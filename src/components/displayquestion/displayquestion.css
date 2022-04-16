@@ -10,7 +10,7 @@
   justify-content: center;
 
   font-family: 'Bebas Neue', cursive;
-  font-size: 5rem;
+  font-size: 10rem;
   letter-spacing: 0.5rem;
   color: #1c2441;
 
@@ -19,17 +19,15 @@
   border: 3px solid #4b5990;
 }
 
-.display_question {
-  font-size: 2em;
-}
-
 .display_question--right {
-  background-color: rgba(26, 219, 26, 0.774);
+  background-color: rgba(32, 136, 32, 0.774);
   border: 0;
 }
 
 .display_question--wrong {
-  background-color: red;
+  background-color: rgb(187, 53, 53);
+  border: 0;
+  color: #ffffff;
 }
 
 input {
