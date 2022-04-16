@@ -6,6 +6,7 @@ export default function RowNumber({ activeNumbers, setActiveNumbers }) {
 
   function activeNumberRow(numberInput: number) {
     if (activeNumbers.includes(numberInput)) {
+      if (activeNumbers.length <= 1) return
       setActiveNumbers([...activeNumbers.filter(e => e !== numberInput)])
     } else {
       setActiveNumbers([...activeNumbers, numberInput])

@@ -6,7 +6,7 @@ function getRandomNumber(max: number) {
 }
 
 function CheckRightAnswerDisplay({ isRightAnswer }) {
-  if (isRightAnswer) return <div className='display-container display_question--right'>Right</div>
+  if (isRightAnswer) return <div className='display-container display_question--right'></div>
   return <div className='display-container display_question--wrong '>Wrong</div>
 }
 
@@ -31,7 +31,7 @@ export default function DisplayQuestion(props) {
   }, [activeNumbers])
 
 
-  const handleEnterTimer = () => {
+  const handleEnterTimer = (timerValue: number) => {
     if (intervalId) {
       clearInterval(intervalId);
       setIntervalId(0);
@@ -39,7 +39,7 @@ export default function DisplayQuestion(props) {
 
     const newIntervalId = setInterval(() => {
       setAnswerTimer(true);
-    }, 1000);
+    }, timerValue);
     setIntervalId(newIntervalId);
   };
 
@@ -57,14 +57,21 @@ export default function DisplayQuestion(props) {
           onKeyPress={event => {
             if (event.key === 'Enter') {
               event.preventDefault();
-              handleEnterTimer()
               setAnswerTimer(false)
 
               const targetValue = parseInt(event.currentTarget.value)
+              const isRight = activeNumbers[number1] * activeNumbers[number2] === targetValue
+
               setUserRes(targetValue)
 
-              if (activeNumbers[number1] * activeNumbers[number2] === targetValue) setIsRightAnswer(true)
-              else setIsRightAnswer(false)
+              if (isRight) {
+                setIsRightAnswer(true)
+                handleEnterTimer(200) //Miliseconds
+              }
+              else {
+                setIsRightAnswer(false)
+                handleEnterTimer(1000) //Miliseconds
+              }
 
               event.currentTarget.value = ''
               setNumber1(getRandomNumber(activeNumberLength))

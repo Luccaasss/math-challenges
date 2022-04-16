@@ -10,7 +10,7 @@
   justify-content: center;
 
   font-family: 'Bebas Neue', cursive;
-  font-size: 3rem;
+  font-size: 5rem;
   letter-spacing: 0.5rem;
   color: #1c2441;
 
@@ -24,7 +24,8 @@
 }
 
 .display_question--right {
-  background-color: green;
+  background-color: rgba(26, 219, 26, 0.774);
+  border: 0;
 }
 
 .display_question--wrong {
@@ -42,4 +43,5 @@ input {
 
   border: 3px solid #4b5990;
   border-radius: 0.4rem;
+  outline: none;
 }
