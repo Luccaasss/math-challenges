@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+.rownumber-container {
+  display: grid;
+  row-gap: 0.3rem;
+  grid-template-columns: repeat(10, 1fr);
+}
+
 .rownumber_button {
   width: 40px;
   height: 40px;
@@ -12,7 +18,7 @@
 
   border: none;
   outline: none;
-  border-radius: 0.2rem;
+  border-radius: 0.1rem;
   cursor: pointer;
 }
 
