@@ -9,12 +9,23 @@ function getRandomNumber(max: number) {
 const audio = new Audio(song)
 audio.volume = 0.3 //Set audio volume to 0.3 of 1.0
 
-function CheckRightAnswerDisplay({ isRightAnswer, userRes }) {
+interface PropsCheckRight {
+  isRightAnswer: boolean;
+  userRes: number
+}
+
+function CheckRightAnswerDisplay({ isRightAnswer, userRes }: PropsCheckRight) {
   if (isRightAnswer) return <div className='display-container display_question--right'></div>
   return <div className='display-container display_question--wrong '>{userRes}</div>
 }
 
-export default function DisplayQuestion(props) {
+interface Props {
+  activeNumbers: number[];
+  setAnswerTimer: React.Dispatch<React.SetStateAction<boolean>>,
+  answerTimer: boolean
+}
+
+export default function DisplayQuestion(props: Props) {
   const {
     activeNumbers,
     setAnswerTimer,
