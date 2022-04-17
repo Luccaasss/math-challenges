@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import './rownumber.css';
 
-export default function RowNumber({ activeNumbers, setActiveNumbers }) {
+interface Props {
+  activeNumbers: number[];
+  setActiveNumbers: React.Dispatch<React.SetStateAction<number[]>>,
+}
+
+export default function RowNumber({ activeNumbers, setActiveNumbers }: Props) {
   const numbersRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
   function activeNumberRow(numberInput: number) {
     if (activeNumbers.includes(numberInput)) {
       if (activeNumbers.length <= 1) return
-      setActiveNumbers([...activeNumbers.filter(e => e !== numberInput)])
+      setActiveNumbers([...activeNumbers.filter((e: number) => e !== numberInput)])
     } else {
       setActiveNumbers([...activeNumbers, numberInput])
     }
